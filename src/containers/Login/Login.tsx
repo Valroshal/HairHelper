@@ -11,7 +11,6 @@ const Login = () => {
         console.error(error)
     }
 
-    // @ts-ignore
     const responseGoogle = (googleUser: gapi.auth2.GoogleUser) => {
         const id_token = googleUser.getAuthResponse(true).id_token
         const googleId = googleUser.getId()
