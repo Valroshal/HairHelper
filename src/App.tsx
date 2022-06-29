@@ -27,15 +27,8 @@ function App() {
   },[]);
 
   return (
-    <div className="app">
-      <div className="userLogin">
-        <h1>LOGIN</h1>
-        <input type="text" placeholder="Username or email..." />
-        <input type="password" placeholder="Password..."/>
-        <button>Sign in</button>
-
-        <div id = "signInDiv"> </div>
-      </div>
+    <div className="App">
+      <div id = "signInDiv"> </div>
     </div>
   );
 }
