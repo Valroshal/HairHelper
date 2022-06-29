@@ -1,34 +1,45 @@
-import React, {useEffect} from "react";
+import React from "react";
+import { GoogleLoginButton } from 'ts-react-google-login-component';
 
 
 const Login = () => {
-
-    // @ts-ignore
-    function handleCallbackResponse( response ) {
-        console.log(" Encoded JWT ID token " + response.credential);
+    const preLoginTracking = () => {
+        console.log('Attemp to login with google');
+    }
+    const errorHandler = (error: string) => {
+        // handle error if login got failed...
+        console.error(error)
     }
 
-    useEffect(() => {
-        /* global google */
-        // @ts-ignore
-        google.accounts.id.initialize({
-            client_id: "993513948523-anaep7s1tmm4n0db313bruanu26qehfr.apps.googleusercontent.com" ,
-            callback: handleCallbackResponse
-        });
-        // @ts-ignore
-        google.accounts.id.renderButton(
-            document.getElementById("signInDiv"),
-            { theme: "outline" , size: "large" }
-        );
-    },[]);
+    // @ts-ignore
+    const responseGoogle = (googleUser: gapi.auth2.GoogleUser) => {
+        const id_token = googleUser.getAuthResponse(true).id_token
+        const googleId = googleUser.getId()
 
-    return (
-        <div className= "loginForm">
+        console.log({ googleId })
+        console.log({accessToken: id_token})
+        // Make user login in your system
+        // login success tracking...
+    }
 
-            <div id = "signInDiv"> </div>
-        </div>
-    );
+    const clientConfig = { client_id: '993513948523-anaep7s1tmm4n0db313bruanu26qehfr.apps.googleusercontent.com' }
+
+
+            return (
+                <div className="loginForm">
+                    <h1>LOGIN</h1>
+                    <input className="" type="text" placeholder="Username or email..."/>
+                    <input type="password" placeholder="Password..."/>
+                    <button>Sign in</button>
+
+                    <GoogleLoginButton
+                        responseHandler={responseGoogle}
+                        clientConfig={clientConfig}
+                        preLogin={preLoginTracking}
+                        failureHandler={errorHandler}
+                    />
+                </div>
+            );
 }
-
 
 export default Login
