@@ -26,7 +26,7 @@ const Login = () => {
 
             return (
                 <div className="loginForm">
-                    <h1>LOGIN</h1>
+                    <h1 className="text-orange-600">LOGIN</h1>
                     <input className="" type="text" placeholder="Username or email..."/>
                     <input type="password" placeholder="Password..."/>
                     <button>Sign in</button>

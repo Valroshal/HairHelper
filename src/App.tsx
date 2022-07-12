@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 import './App.css';
 import Login from "./containers/Login/Login";
 
